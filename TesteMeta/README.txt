@@ -2,7 +2,10 @@ Pré-requisitos:
 
 
 Banco de dados: Postgres versão 9.x
+Base de dados: No postgres, criar uma nova base de dados com o nome: testemeta
+
 Servidor Web: Apache tomcat 7.x
+
 -------------------------------------------------------
 Instalação:
 
