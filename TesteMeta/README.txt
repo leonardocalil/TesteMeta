@@ -24,6 +24,7 @@ Validações:
     
 - Validar endpoint rest:
 
+--> validar o arquivo web.xml
 --> Link: http://localhost:8080/TesteMeta/rest/user/All 
 
 	@GET
@@ -32,14 +33,14 @@ Validações:
 	public List<UserEntity> all()
 
 --> Link: http://localhost:8080/TesteMeta/rest/user/Create	
-	
 
 	@POST
 	@Path("Create")
 	@Produces(MediaType.APPLICATION_JSON)
 	public boolean create(String json) 
+	
 
---> Link: http://localhost:8080/TesteMeta/rest/user/Create/1		
+--> Link: http://localhost:8080/TesteMeta/rest/user/Read/1		
 		
 	@GET
 	@Path("Read/{id}")
@@ -59,7 +60,9 @@ Validações:
 	@Path("Delete/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public boolean delete(@PathParam("id") String id)
-	
+
+
+*** Obs: Os metodos que são do tipo POST, deve ser enviado o JSON representando a classe UserEntity	
 ------------------------------------------------------
 
 *** Nesta versão nao foi implementado JMS e testes unitarios
