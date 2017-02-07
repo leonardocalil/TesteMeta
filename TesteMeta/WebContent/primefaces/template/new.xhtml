@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<h:head>
+	    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+	</h:head>
+	
+	<ui:composition template="/primefaces/template/masterPage.xhtml">
+		<ui:define name="conteudo">
+			<p:panel id="panelNew" style="border: 0px solid white" header="#{titlePanel}" >
+				<p:growl id="men" />
+			   	<h:form id="formNew">
+				   	<p:messages id="msgSave" showDetail="false" >
+				   		<p:effect type="pulsate" event="load" delay="1000">  
+	            			<f:param name="mode" value="'show'" />  
+	        			</p:effect>  
+				   	</p:messages>
+			   		<b><p:commandButton immediate="true" ajax="false" id="linkBack" value="Back" update=":center" process="@this" action="#{bean.back}" icon="ui-icon-arrowthick-1-w"/></b>
+			   		<p:tooltip id="linkBacktip" for="linkBack" value="Back to Grid" showEffect="clip" hideEffect="explode" />
+				    <h:panelGrid border="0" cellpadding="6" cellspacing="4" columns="2" id="panel" >
+			        	<ui:insert name="newContent" />
+				   	</h:panelGrid>
+				   	<h:inputHidden id="code" value="#{bean.newObject.id}"/>
+				   	
+				   	<h:panelGrid id="panelBotones" columns="2">
+						<p:commandButton id="btnSave" value="Save" action="#{bean.save}" ajax="false" update="msgSave,panel,panelBotones" />
+
+				   </h:panelGrid>
+				</h:form>
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+</html>

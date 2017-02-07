@@ -1,33 +1,14 @@
 package br.com.testemeta.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public abstract class AbstractEntity {
-	@Id
-	private int id;
-	private String name;
-	private String description;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
+	public abstract int getId();
+	public abstract void setId(int id);
+	public abstract String getName();
+	public abstract void setName(String name);
+	public abstract String getDescription();
+	public abstract void setDescription(String description);
 	
 	
 	

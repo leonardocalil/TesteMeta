@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	 		<h:head>
+	    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+	
+	</h:head>
+	 
+	<ui:composition
+		template="/primefaces/template/grid.xhtml">
+		
+		<ui:param name="beanGrid" value="#{userBean}" />
+		<ui:param name="titlePanelGrid" value="User" />
+		
+		<ui:define name="gridContent">
+
+			<p:column filterMatchMode="contains" filterBy="#{varBean.name}"
+				sortBy="#{varBean.name}" headerText="Name">
+				<h:outputText value="#{varBean.name}" />
+			</p:column>
+			<p:column filterMatchMode="contains" filterBy="#{varBean.description}"
+				sortBy="#{varBean.description}" headerText="Description">
+				<h:outputText value="#{varBean.description}" />
+			</p:column>
+			<p:column filterMatchMode="contains" filterBy="#{varBean.department.name}"
+				sortBy="#{varBean.description}" headerText="Department">
+				<h:outputText value="#{varBean.department.name}" />
+			</p:column>
+			<p:column headerText="Permissions">
+			
+				<p:dataTable emptyMessage="Empty" liveScroll="true" value="#{varBean.permissions}" var="permission" >
+						<p:column  >
+							<h:outputText value="#{permission.name}" />			
+						</p:column>
+				</p:dataTable>
+				
+			</p:column>
+			
+
+		</ui:define>
+			
+			
+			
+		
+	</ui:composition>
+</html>

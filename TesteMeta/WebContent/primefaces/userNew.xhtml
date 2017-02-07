@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+		
+	<h:head>
+	    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+	</h:head>
+
+	<ui:composition
+		template="/primefaces/template/new.xhtml">
+
+		<ui:param name="bean" value="#{userBean}" />
+		<ui:param name="titlePanel" value="User" />
+		
+		<ui:define name="newContent"> 
+			
+			<h:outputText value="Name" />
+
+			<p:inputText id="name" required="true" requiredMessage="Name is required" maxlength="100" size="20"   
+				value="#{bean.newObject.name}" />
+
+			
+			
+			<h:outputText value="Description" />
+
+			<h:inputTextarea id="description" required="false" cols="60" rows="10" value="#{bean.newObject.description}" />
+			
+
+			<h:outputText value="Department" />
+			
+			<p:selectOneMenu id="department" required="true" requiredMessage="Select the department" 
+				value="#{bean.department_id}" >
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItems value="#{bean.departments}" var="department"
+					itemValue="#{department.id}" itemLabel="#{department.name}" />
+			</p:selectOneMenu>
+			
+			<h:outputText value="Permissions **Press control to select more than 1" />
+			<p:selectManyMenu value="#{bean.permission_ids}" required="true" requiredMessage="Select the permissions" >
+	            <f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItems value="#{bean.permissions}" var="permission"
+					itemValue="#{permission.id}" itemLabel="#{permission.name}" />
+	        </p:selectManyMenu>
+	        
+				        
+	       <p:focus for="name" />
+
+		</ui:define>
+		
+			
+	</ui:composition>
+</html>
+	

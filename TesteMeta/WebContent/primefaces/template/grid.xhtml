@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+		
+	 <h:head>
+	    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+	</h:head>
+	
+	<ui:composition template="/primefaces/template/masterPage.xhtml">
+		<ui:define name="conteudo">
+		
+			<h:form id="formGrid" >
+
+				<p:panel style="border: 0px solid white" id="gridPainel" header="#{titlePanelGrid}" >
+					<b>
+						<p:commandButton id="newLink" ajax="false" process="@this" title="New" value="Novo" icon="ui-icon-plusthick" update=":center" action="#{beanGrid.newPage}" />
+					</b>
+					<p:tooltip id="newLinktip" for="newLink" value="Add a new Item" showEffect="clip" hideEffect="explode" />
+					<p:messages id="msg" showDetail="false" >
+						<p:effect type="pulsate" event="load" delay="1000">  
+            				<f:param name="mode" value="'show'" />  
+        				</p:effect>  
+					</p:messages>
+					
+					
+					<h:panelGrid border="0" cellpadding="6" cellspacing="4" columns="2" id="panelFind" >
+						<p:dialog footer="Wait ..." modal="true" widgetVar="statusDialog" header="Loading" id="dialogAjax">
+							<p:graphicImage id="imageWait" value="/images/ajaxloadingbar.gif" />
+						</p:dialog>
+				   	</h:panelGrid>
+				   						
+					<p:dataTable rowsPerPageTemplate="10,25,50,75,100,250,500,1000" emptyMessage="Empty" sortOrder="descending" paginatorPosition="bottom" liveScroll="true" draggableColumns="true" id="tabla" value="#{beanGrid.data}" var="varBean" paginator="true" rows="10" editable="true" >
+						<p:column filterMatchMode="contains" id="columnOptions" headerText="Option"  >
+							
+							<p:commandButton ajax="false" id="btnUpdate" action="#{beanGrid.editPage}" title="Update" icon="ui-icon-pencil" update=":center">
+								<f:setPropertyActionListener value="#{varBean}" target="#{beanGrid.newObject}" />
+							</p:commandButton>
+							
+							<p:commandButton  ajax="false"  id="btnDelete" action="#{beanGrid.remove}" title="Delete" onclick="return confirm('Are you sure?');" 
+								icon="ui-icon-trash" update=":formGrid:msg">
+								<f:setPropertyActionListener value="#{varBean}" target="#{beanGrid.selected}" />
+							</p:commandButton>
+							
+
+						</p:column>
+						<ui:insert name="gridContent" />
+					</p:dataTable>
+					<h:outputText value="#{beanGrid.size}"/>
+					
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>
